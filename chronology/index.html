@@ -3,11 +3,12 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>小鎮遊跡</title>
+    <title>我的 Web 歷程 - 小鎮遊跡</title>
     <meta name="author" content="Hsiao-Ting Yu (Littlebtc)">
 
     
-    <meta name="description" content="/* 土砲退伍倒數計時器 */ $(document).ready(function() { var timeEnlist = 1309190400000; // 2011年6月28日 00:00 (UTC+8) var timeDischarge = 1338220800000; // &hellip;">
+    <meta name="description" content="我的 Web 歷程 從 1998 在國小教室第一次打開 Microsoft FrontPage 的那一刻起，我成為了一個 Web Developer。
+從 IE 5 到 Firefox 10，從 CGI/Perl、PHP 到 Ruby on Rails，長達 14 年的網頁設計冒險之旅， &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -69,34 +70,35 @@
 
 	<div id="content" class="inner"><article class="page">
     
-     <script type="text/javascript">
-    /* 土砲退伍倒數計時器 */
-    $(document).ready(function() {
-      var timeEnlist = 1309190400000; // 2011年6月28日 00:00 (UTC+8)
-      var timeDischarge = 1338220800000; // 2012年5月29日 00:00 (UTC+8)
-      var now = new Date().getTime();
-      if (now > timeDischarge) {
-        $("#militaryService").text("目前應該已經退伍了 :)");
-      } else if (now > timeEnlist) {
-        var remainingDays = Math.ceil((timeDischarge - now) / 86400 / 1000);
-        $("#militaryService").text("還有 " + remainingDays + " 天就要退伍了 :D :D :D");
-      }
-      $("#main-intro").anystretch("/images/me.jpg")
-    });
-  </script>
-<div id="main-intro">
-  <div class="intro-block">
-    <p>笨笨的小B（尤孝庭），台灣的網頁開發者，活躍於開放原始碼社群。</p>
-    <p>台大電機系畢業，目前正在當兵中，<span id="militaryService">將於 2012 年 5 月 29 日退伍。</span></p>
-    <p><a href="https://addons.mozilla.org/firefox/addon/nicofox">NicoFox</a> 可能是我最知名的作品。<a href="http://touchlim.it/">TouchLimit</a>、<a href="http://onionsky.tw">OnionSky</a> 是我參與過開發的網站。</p>
-  </div>
-  <div class="intro-block">
-    <p>Hsiao-Ting Yu (Littlebtc), a web developer in Taiwan, active on open source community.</p>
-    <p>Now a conscript served in ROC army, will discharge on May 29 2012.</p>
-    <p>A graduate of National Taiwan University, major in Electrical Engineering.</p>
-    <p><a href="https://addons.mozilla.org/firefox/addon/nicofox">NicoFox</a>, <a href="http://touchlim.it/">TouchLimit</a>, <a href="http://onionsky.tw">OnionSky</a> are my notable works.</p>
-  </div>
-</div>
+    <h1 class="title">我的 Web 歷程</h1>
+    
+    <p>從 1998 在國小教室第一次打開 Microsoft FrontPage 的那一刻起，我成為了一個 Web Developer。
+從 IE 5 到 Firefox 10，從 CGI/Perl、PHP 到 Ruby on Rails，長達 14 年的網頁設計冒險之旅，至今尚未停歇。</p>
+
+<h3>1998～2001：初創期</h3>
+
+<p>還是個國小學生的時候，我就開始用 FrontPage 和 PhotoImpact 開始亂寫起網站了。 :P
+當時的作品已多不可考。</p>
+
+<h3>2001～2003：M-Stage 時期</h3>
+
+<p>2001 年，以<a href="http://zh.wikipedia.org/wiki/%E5%B0%8F%E9%AD%94%E5%A5%B3Doremi">小魔女 DoReMi</a> 為主題做起了個人網站「M-Stage」（已關閉），也因為這個網站開始學習起當時流行的 CGI/Perl，算是我網站開發的萌芽階段。</p>
+
+<h3>2003～2006：PHP 時期</h3>
+
+<p>在「天真的驚直」將 n@board 正體中文化後，我開始把研究的重心移動到 PHP 上。當時以 n@series 為基礎成立了個人網站「S.S.T. Dream House」（已關閉），並撰寫多個基於 n@board 的 Patch 系加強套件。此階段和台中一中同校的吳冠龍以團隊參與國際科展電腦科學科，獲選 Intel ISEF 2005 Finalist。</p>
+
+<h3>2006～2008：維基百科時期</h3>
+
+<p>2006 起因緣際會加入了中文維基百科的編輯，後來成為了中文版管理員（現在已解任）。後來參與了 Wikimania 2007 國際會議的競標和籌備，負責網站和報名系統製作。</p>
+
+<h3>2008～：MozTW 時期</h3>
+
+<p>2008 年下半年，在台大宿舍裡完成了 <a href="https://addons.mozilla.org/zh-TW/firefox/addon/nicofox/">NicoFox</a>，也因此慢慢加入 <a href="http://moztw.org/">MozTW</a> 社群的運作之中。後來靠 <a href="https://addons.mozilla.org/zh-TW/firefox/addon/voyage/">Voyage</a> 拿下 Extend Firefox 3.5 大獎，更成為了 Mozilla 的附加元件推廣大使。曾在 COSCUP 和 OpenFoundry 工作坊演講過和附加元件有關的主題。</p>
+
+<h3>2010～：Rails 時期</h3>
+
+<p>2010 年開始學習 Ruby on Rails，參與了 <a href="http://onionsky.tw/">OnionSky</a> 的技術實作，並且因為自己的興趣，架設了 <a href="http://touchlim.it/">TouchLimit</a> 成績單系統。</p>
 
 </article>
 <div class="share">
@@ -133,8 +135,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://littleb.tc/index.html';
-        var disqus_url = 'http://littleb.tc/index.html';
+        var disqus_identifier = 'http://littleb.tc/chronology/index.html';
+        var disqus_url = 'http://littleb.tc/chronology/index.html';
         var disqus_script = 'embed.js';
       
     (function () {

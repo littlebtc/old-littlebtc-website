@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | 小鎮遊跡]]></title>
+  <link href="http://littleb.tc/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://littleb.tc/"/>
+  <updated>2012-02-28T19:13:27+08:00</updated>
+  <id>http://littleb.tc/</id>
+  <author>
+    <name><![CDATA[Hsiao-Ting Yu (Littlebtc)]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hello Octopress!]]></title>
+    <link href="http://littleb.tc/blog/2012/02/28/hello-octopress/"/>
+    <updated>2012-02-28T18:49:00+08:00</updated>
+    <id>http://littleb.tc/blog/2012/02/28/hello-octopress</id>
+    <content type="html"><![CDATA[<p><img src="http://i.imgur.com/L0N5h.png" alt="Imgur" /></p>
+
+<p>收假前半小時，終於讓新網站上線了！ XDDDD</p>
+
+<p>隨著 <a href="http://octopress.org/">Octopress</a>  在 Web Developer 間逐漸流行起來，寫過 Rails 的我也開始對這個基於 Ruby 的網誌系統產生興趣。</p>
+
+<p>經過一番研究之後，決定改用 Octopress 來寫網誌，並且善用其中 Jekyll 的功能，把自己過去用 <a href="http://paulrouget.com/dzslides/">DZSlides</a> 寫的，和未來想做的 HTML5 投影片也一起放進同一個網站裡。這樣自己的網站內容都可以統一保管在 GitHub Pages 上面了 :)</p>
+
+<p>考慮到轉移太麻煩，我也選擇使用砍掉重練的方式。為了避免舊新網誌網址混淆，決定把整個 <a href="http://blog.littleb.tc">http://blog.littleb.tc</a> 拿掉，舊的移回 <a href="http://littlebtc.blogspot.com">http://littlebtc.blogspot.com</a>，新的網誌放在 <a href="http://littleb.tc/blog">http://littleb.tc/blog</a> 裡頭，並且用 <a href="http://kidwm.net">WM</a> 的 VPS 把舊網誌的舊文章轉到舊網址。</p>
+
+<p>這個網站使用了 <a href="http://zespia.tw/">SkyArrow</a> 製作的 Slash 佈景主題，簡潔而漂亮 :)</p>
+
+<p>這個 Octopress 將會是我的個人網站、網誌與投影片的放置點。請多指教！</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -3,11 +3,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>小鎮遊跡</title>
+    <title>投影片 - 小鎮遊跡</title>
     <meta name="author" content="Hsiao-Ting Yu (Littlebtc)">
 
     
-    <meta name="description" content="/* 土砲退伍倒數計時器 */ $(document).ready(function() { var timeEnlist = 1309190400000; // 2011年6月28日 00:00 (UTC+8) var timeDischarge = 1338220800000; // &hellip;">
+    <meta name="description" content="投影片 這裡放置小B 演講或教學時用的投影片。 一部分投影片放在 SlideShare 上，一部分以 HTML 的形式放在這個網站。 2009 MozTW 元智大學開放原始碼社團講座：Firefox 擴充套件開發解密
+Mozilla Firefox 擴充套件開發：入門篇
+Mozilla &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -69,34 +71,38 @@
 
 	<div id="content" class="inner"><article class="page">
     
-     <script type="text/javascript">
-    /* 土砲退伍倒數計時器 */
-    $(document).ready(function() {
-      var timeEnlist = 1309190400000; // 2011年6月28日 00:00 (UTC+8)
-      var timeDischarge = 1338220800000; // 2012年5月29日 00:00 (UTC+8)
-      var now = new Date().getTime();
-      if (now > timeDischarge) {
-        $("#militaryService").text("目前應該已經退伍了 :)");
-      } else if (now > timeEnlist) {
-        var remainingDays = Math.ceil((timeDischarge - now) / 86400 / 1000);
-        $("#militaryService").text("還有 " + remainingDays + " 天就要退伍了 :D :D :D");
-      }
-      $("#main-intro").anystretch("/images/me.jpg")
-    });
-  </script>
-<div id="main-intro">
-  <div class="intro-block">
-    <p>笨笨的小B（尤孝庭），台灣的網頁開發者，活躍於開放原始碼社群。</p>
-    <p>台大電機系畢業，目前正在當兵中，<span id="militaryService">將於 2012 年 5 月 29 日退伍。</span></p>
-    <p><a href="https://addons.mozilla.org/firefox/addon/nicofox">NicoFox</a> 可能是我最知名的作品。<a href="http://touchlim.it/">TouchLimit</a>、<a href="http://onionsky.tw">OnionSky</a> 是我參與過開發的網站。</p>
-  </div>
-  <div class="intro-block">
-    <p>Hsiao-Ting Yu (Littlebtc), a web developer in Taiwan, active on open source community.</p>
-    <p>Now a conscript served in ROC army, will discharge on May 29 2012.</p>
-    <p>A graduate of National Taiwan University, major in Electrical Engineering.</p>
-    <p><a href="https://addons.mozilla.org/firefox/addon/nicofox">NicoFox</a>, <a href="http://touchlim.it/">TouchLimit</a>, <a href="http://onionsky.tw">OnionSky</a> are my notable works.</p>
-  </div>
-</div>
+    <h1 class="title">投影片</h1>
+    
+    <p>這裡放置小B 演講或教學時用的投影片。</p>
+
+<p>一部分投影片放在 SlideShare 上，一部分以 HTML 的形式放在這個網站。</p>
+
+<h3>2009</h3>
+
+<ul>
+<li>MozTW 元智大學開放原始碼社團講座：<a href="http://www.slideshare.net/littlebtc/moztw-yzu-cse-lecture">Firefox 擴充套件開發解密</a></li>
+<li><a href="http://www.slideshare.net/littlebtc/ext-0509">Mozilla Firefox 擴充套件開發：入門篇</a></li>
+<li><a href="http://www.slideshare.net/littlebtc/ext-0523-1477028">Mozilla Firefox 擴充套件開發：進階篇</a></li>
+<li>COSCUP 2009 閃電秀：<a href="http://www.slideshare.net/littlebtc/coscup-jetpack-lighting-talk">Jetpack: 五分鐘帶你的火狐上雲端</a>（<a href="http://www.youtube.com/watch?v=DkMc3COF3ms">影片</a>）</li>
+</ul>
+
+
+<h3>2010</h3>
+
+<ul>
+<li><a href="http://www.slideshare.net/littlebtc/moztw-jetpack-workshop-taichung">Jetpack 工作坊台中場</a>（<a href="http://moztw.org/events/jetpack-workshop/">介紹與影片</a>）</li>
+<li>COSCUP 2010：<a href="http://www.slideshare.net/littlebtc/jetpack-sdk-the-new-possibility-of-the-extensions-on-browser">Jetpack SDK: 瀏覽器擴充套件的新可能性</a>（<a href="http://www.youtube.com/watch?v=XtmrJqTQjv8">影片</a>）</li>
+<li><a href="http://www.slideshare.net/littlebtc/git-5528339">寫給大家的 Git 教學</a></li>
+</ul>
+
+
+<h3>2011</h3>
+
+<ul>
+<li>COSCUP 2011 非會議：<a href="2011/coscup-unconf/">UI 不要亂改：從 NicoFox 開始說起</a></li>
+<li>MozTW SFD：<a href="2011/moztw-sfd/sdk.html">Add-on SDK</a>、<a href="2011/moztw-sfd/nicofox.html">NicoFox</a></li>
+</ul>
+
 
 </article>
 <div class="share">
@@ -133,8 +139,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://littleb.tc/index.html';
-        var disqus_url = 'http://littleb.tc/index.html';
+        var disqus_identifier = 'http://littleb.tc/slides/index.html';
+        var disqus_url = 'http://littleb.tc/slides/index.html';
         var disqus_script = 'embed.js';
       
     (function () {
