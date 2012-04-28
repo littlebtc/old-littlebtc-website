@@ -400,11 +400,11 @@
     <li>可以透過 Merge 「合起來」
       <ul>
         <li>假如 Merge 的目標只是這個 Branch 往後推的幾個 Commit，只要把 Branch 往後推就好，這樣叫 Fast-forward merge。</li>
-        <li>無法使用 Fast forward 的狀況，Git 會嘗試用策略去解決並合併分支。簡單、問題較少，但會讓樹看起來很亂 :P。</li>
+        <li>無法使用 Fast forward 的狀況，Git 會嘗試用策略去解決並合併分支。簡單、問題較少，但合併次數一多，會讓樹看起來很亂 :P。</li>
       </ul>
       
     </li>
-    <li>或透過 Rebase 「接上去」<br>複雜，容易產生衍生問題，但結果較漂亮<br>已經 Push 給別人的東西不要用 Rebase，會讓樹亂掉！</li>
+    <li>或透過 Rebase 「接上去」<br>複雜，容易產生衍生問題，但結果較漂亮<br><strong>已經 Push 給別人的東西千萬不要用 Rebase！</strong></li>
   </ul>
 </section>
 <section class="slide">
@@ -420,7 +420,7 @@
   <img src="git/branch-ex2-2.png" style="float: left; margin-right: 50px;">
   <p><code>git checkout master</code><br><code>git merge hotfix</code></p>
   <ul>
-    <li>切回 <code>master</code> 後，把 <code>hotfix</code> 裡的變更合併進來</li>
+    <li>切回 <code>master</code> 後，「把 <code>hotfix</code> 裡的變更合併進來」</li>
     <li>因為合併的對象是後面幾個 Commit，可以透過 Fast Forward 把 Branch 往後推解決！ :)</li>
     <li>完成後，我就可以把 <code>git branch -d hotfix</code> 把不需要的 Branch 刪掉了</li>
   </ul>
@@ -445,6 +445,48 @@
   <h2>實例二：Merge</h2>
   <img src="git/branch-ex2-5.png" style="float: left; margin-right: 50px;">
   <p>合併的結果會產生新的 Commit C6，C4 和 C5 是其共同的 parent。至此完成分支的合併。</p>
+</section>
+<section class="slide">
+  <h2>實例三：Rebase</h2>
+  <img src="git/branch-ex3-1.png" style="float: left; margin-right: 50px;">
+  <p>我想把 <code>experiment</code> 的變更丟進去 <code>master</code>，但又不想用 Merge 製造額外的分支，要怎麼辦？</p>
+</section>
+<section class="slide">
+  <h2>實例三：Rebase</h2>
+  <img src="git/branch-ex3-2.png" style="float: left; margin-right: 50px;">
+  <p><code>git checkout experiment</code><br><code>git rebase master</code></p>
+  <p>把 C3 的變更 「蓋到 <code>master</code> 裡面去」</p>
+  <p>接下來就只要切回 <code>master</code>，把 <code>experiment</code> 合併好就搞定了 :)</p>
+  <h5>為什麼「已經 Push 給別人的東西不能 Rebase」？</h5>
+  <p>Rebase 過的東西跟還沒 Rebase 時的東西可能混在一起，整個亂掉&#8230;</p>
+</section>
+<section class="slide">
+  <h2>實例四：複雜一點的 Rebase</h2>
+  <img src="git/branch-ex4-1.png" style="float: left; margin-right: 50px;">
+  <p>因為 <code>server</code> 寫得爛爛的，我想把 <code>client</code> 的變更蓋到 <code>master</code> 上而非 <code>server</code> 上&#8230;</p>
+</section>
+<section class="slide">
+  <h2>實例四：複雜一點的 Rebase</h2>
+  <h5>辦得到！</h5>
+  <p><code>git rebase --onto master server client</code></p>
+  <img src="git/branch-ex4-2.png" style="float: left; margin-right: 50px;">
+  <ul>
+    <li>檢查 <code>client</code>，由 <code>client</code> 和 <code>server</code> 的共同祖先和其比較看作了哪些變動，把那些變更重新在 <code>master</code> 上面作過一遍</li>
+    <li>一樣，剩下的就是 Merge 而已了</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>Branch 的其他指令</h2>
+</section>
+<section class="slide">
+  <h2>Tag</h2>
+</section>
+<section class="slide">
+  <h2>推薦的分支方式</h2>
+  <ul>
+    <li>Feature 和 Hotfix Branches</li>
+    <li>git-flow: http://nvie.com/posts/a-successful-git-branching-model/ http://ihower.tw/blog/archives/5140</li>
+  </ul>
 </section>
 
   <script type="text/javascript">
