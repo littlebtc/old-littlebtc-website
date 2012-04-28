@@ -206,6 +206,7 @@
   <p>（Mac 下另外建議您使用 <a href="http://www.iterm2.com/" target="_blank">iTerm 2</a> 取代內建的終端機程式）
   <h3>圖形介面工具推薦</h3>
   <ul>
+    <li>Xcode 4 內建 Git 支援！（需要 Lion 以上）</li>
     <li><a href="http://www.gitx.org/" target="_blank">GitX</a><br>免費，有只能瀏覽歷史和 Commit 的原始版，和後人改過的全方位版</li>
     <li><a href="http://mac.github.com/" target="_blank">GitHub for Mac</a><br>免費，也能用於非 GitHub 托管專案喔！<br>但對於 Branch 的管理較為簡化，使用上要注意。</li>
     <li><a href="http://www.git-tower.com/" target="_blank">Tower</a>（USD $59）</li>
@@ -323,6 +324,14 @@
   </ul>
   <img src="git/commit-data.png" style="width: 450px;">
 </section>
+<section class="slide">
+  <h2>p.s.「我不要這個 Commit！」</h2>
+  <p>有兩種方法：</p>
+  <ul>
+    <li>如果你還沒 Push 給別人（後述），您可以直接把整個樹退回到前次 Commit 時的狀態：<br><code>git reset HEAD^</code></li>
+    <li>如果你已經 Push 給別人，別人已經有您新的 Commit 了，因此上述的救法無效。您可以用 Revert，製造一個跟目前 Commit 差異完全相反過來的 Commit：<br><code>git revert HEAD</code></li>
+  </ul>
+</section>
 
 <section class="slide">
   <div class="vcenter">
@@ -344,17 +353,98 @@
   <h2>Tag 與 Branch</h2>
   <p>在 Git 中，Tag 和 Branch <strong>是指向某一特定 Commit 的指標</strong>：</p>
   <ul>
-    <li>Branch 是<strong>會動的</strong>：使用中的 Branch，指向的位置會在新 Commit 出現後自動移動。每一個 Repository 都會有一個預設的 Branch 叫 <code>master</code>。</li>
+    <li>
+      Branch 是<strong>會動的</strong>：使用中的 Branch，指向的位置會在新 Commit 出現後自動移動。每一個 Repository 都會有一個預設的 Branch 叫 <code>master</code>。
+      <ul>
+        <li>Git 會使用 <code>HEAD</code> 指標去紀錄目前所使用的 Branch。</li>
+        <li>可以隨時新增、切換和刪除 Branch（因為它只是指標！）</li>
+        <li>分岔的 Branch 可以透過 Merge 和 Rebase 去合併。</li>
+      </ul>
+    </li>
     <li>Tag 是<strong>不會動的</strong>：對某一個特定的 Commit 加上標記，指向位置不會隨新 Commit 出現更動。用於標記釋出版本或里程碑。</li>
-  <img src="git/branch-sample.png">
 </section>
 <section class="slide">
-  <h2>多個 Branch 的管理</h2>
+  <h2>實例一：我在哪裡？</h2>
+  <img src="git/branch-sample.png">
+  <p>一個擁有三個 Commit 的 Repository。這時只有一個預設的 <code>master</code> Branch。</p>
+</section>
+<section class="slide">
+  <h2>實例一：我在哪裡？</h2>
+  <img src="git/branch-ex1-1.png">
+  <p><code>git branch testing</code><br>建立一個新的 Branch 叫 <code>testing</code>，指向目前所在的 Commit。</p>
+</section>
+<section class="slide">
+  <h2>實例一：我在哪裡？</h2>
+  <img src="git/branch-ex1-2.png">
+  <p><code>git checkout testing</code><br>切換到 <code>testing</code> Branch：<code>HEAD</code> 會變成指向 <code>testing</code>，然後切換到該 Branch 指向的 Commit。</p>
+  <p>小秘訣：<code>git checkout -b testing</code> 可以一次做完開新 Branch + 切換</p>
+</section>
+<section class="slide">
+  <h2>實例一：我在哪裡？</h2>
+  <img src="git/branch-ex1-3.png">
+  <p>如果在這時新增新的 Commit，會移動 <code>testing</code> Branch 指向的位置，而不會移動 <code>master</code>。<br>（也就是只有 <code>HEAD</code> 指到的 Branch 會動）</p>
+</section>
+<section class="slide">
+  <h2>實例一：我在哪裡？</h2>
+  <img src="git/branch-ex1-4.png">
+  <p>用 <code>git checkout master</code> 切換到 <code>master</code> 和其對應的 Commit</p>
+</section>
+<section class="slide">
+  <h2>實例一：我在哪裡？</h2>
+  <img src="git/branch-ex1-5.png">
+  <p>在 master 下進行 Commit 後，由於同一個 Commit 有兩個分支，產生分岔！</p>
+</section>
+<section class="slide">
+  <h2>Branch 岔開之後呢？</h2>
   <ul>
-    <li>Git 會使用 <code>HEAD</code> 指標去紀錄目前所使用的 Branch。</li>
-    <li>可以隨時新增、切換和刪除 Branch（因為它只是指標！）</li>
-    <li>如果不同的 Branch 落在岔開的分支，可以透過 Merge 「合起來」，或透過 Rebase 「接上去」。</li>
+    <li>可以透過 Merge 「合起來」
+      <ul>
+        <li>假如 Merge 的目標只是這個 Branch 往後推的幾個 Commit，只要把 Branch 往後推就好，這樣叫 Fast-forward merge。</li>
+        <li>無法使用 Fast forward 的狀況，Git 會嘗試用策略去解決並合併分支。簡單、問題較少，但會讓樹看起來很亂 :P。</li>
+      </ul>
+      
+    </li>
+    <li>或透過 Rebase 「接上去」<br>複雜，容易產生衍生問題，但結果較漂亮<br>已經 Push 給別人的東西不要用 Rebase，會讓樹亂掉！</li>
   </ul>
+</section>
+<section class="slide">
+  <h2>實例二：Merge</h2>
+  <img src="git/branch-ex2-1.png" style="float: left; margin-right: 50px;">
+  <ul>
+    <li><code>iss53</code> 用來修正 Issue 53，但還沒寫完</li>
+    <li><code>hotfix</code> 是為了解決現在 <code>master</code> 上迫切的問題<br>已經寫好了，我想合併進 <code>master</code></li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>實例二：Merge</h2>
+  <img src="git/branch-ex2-2.png" style="float: left; margin-right: 50px;">
+  <p><code>git checkout master</code><br><code>git merge hotfix</code></p>
+  <ul>
+    <li>切回 <code>master</code> 後，把 <code>hotfix</code> 裡的變更合併進來</li>
+    <li>因為合併的對象是後面幾個 Commit，可以透過 Fast Forward 把 Branch 往後推解決！ :)</li>
+    <li>完成後，我就可以把 <code>git branch -d hotfix</code> 把不需要的 Branch 刪掉了</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>實例二：Merge</h2>
+  <img src="git/branch-ex2-3.png" style="float: left; margin-right: 50px;">
+  <ul>
+    <li>這時我把 <code>iss53</code> 寫好了，要 Merge 回去</li>
+    <li><code>git checkout master</code><br><code>git merge iss53</code></p>
+    <li>但，這種 Merge 沒辦法透過 Fast Forward 解決&#8230;不過所幸它們有共同的祖先，可以做 3-way Merge。</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>實例二：Merge</h2>
+  <ul>
+    <li>3-way Merge 的實作：比較祖先和合併對象間（C2 與 C4 間和 C2 與 C5 間）的變動，將這些變動合併起來</li>
+  </ul>
+  <img src="git/branch-ex2-4.png" style="width: 400px;">
+</section>
+<section class="slide">
+  <h2>實例二：Merge</h2>
+  <img src="git/branch-ex2-5.png" style="float: left; margin-right: 50px;">
+  <p>合併的結果會產生新的 Commit C6，C4 和 C5 是其共同的 parent。至此完成分支的合併。</p>
 </section>
 
   <script type="text/javascript">
