@@ -524,6 +524,136 @@
   </ul>
 </section>
 
+<section class="slide">
+  <div class="vcenter">
+    <p>Part 5</p>
+    <h2>Remote + Collaboration</h2>
+    <p>介紹透過 Remote 連到其他的 Git 遠端，並示範 Git 協作的具體做法。</p>
+  </div>
+</section>
+<section class="slide">
+  <h2>Remote（遠端）</h2>
+  <ul>
+    <li>讓您的 Repository 同步到其他的伺服器中</li>
+    <li>當多人協作時，需要藉此整合大家的東西</li>
+    <li>Git <strong>允許附加多個遠端</strong>，因此可以做複雜的同步工作</li>
+  </ul>
+  <p>以下將先介紹多人協作的架構方式與 Git 伺服器的選擇後，介紹 Remote 的使用方式。</p>
+</section>
+<section class="slide">
+  <h2>多人協作：單一中心式</h2>
+  <ul>
+    <li>類似中心式版本控制系統，所有人跟一個共同的遠端 Repository 進行同步。</li>
+    <li>但跟中心式相比，遇到衝突時，可以透過 Merge 和 Rebase 來解決，不會有卡住的情形。</li>
+    <li>適合人數跟規模較小的情況。</li>
+  </ul>
+  <img src="git/centralized-workflow.png">
+</section>
+<section class="slide">
+  <h2>多人協作：整合管理員式</h2>
+  <ul>
+    <li>有一個「正統」（Blessed）的 Repository 來存放最終版本</li>
+    <li>每個開發者把自己的貢獻整理好後，傳到自己公開的 Repository。</li>
+    <li>由整合管理員決定是否每個開發者改的東西合併到正統裡。</li>
+  </ul>
+  <p>這種模式就是 GitHub 或 BitBucket 等系統的 Fork 與 Pull Request 機制：開發者可以把正統版 Fork 下來改，改好後送 Pull Request 給整合管理員。</p>
+  <img src="git/im-workflow.png">
+</section>
+<section class="slide">
+  <h2>多人協作：司令官與附手</h2>
+  <ul>
+    <li>當專案規模超大時，就需要兩層甚至以上的組織。</li>
+    <li>每個開發者的成果由附手彙整後，交由司令官作最後整合。</li>
+  </ul>
+  <img src="git/d-and-l-workflow.png">
+</section>
+<section class="slide">
+  <h2>Git 遠端的選擇</h2>
+  <ul>
+    <li>網路上的現有服務：GitHub、Bitbucket、&#8230;</li>
+    <li>自行架設：Gitolite、Gitosis、&#8230;</li>
+    <li>檔案系統（NFS、隨身碟&#8230;）</li>
+    <li style="font-size: 70%;"><del>Dropbox</del>（雖然可以，但就失去 Git 的價值了）</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2><a href="https://github.com/" target="_blank">GitHub</a></h2>
+  <ul>
+    <li>主打社群網路功能的 Git 托管服務</li>
+    <li>具有強大的群組、Fork / Pull Request 和其他附加功能，方便多人協作與溝通</li>
+    <li>公開 / Open Source 的專案免費，私密專案則要購買收費服務</li>
+  </ul>
+  <p><a href="https://github.com/" target="_blank">https://github.com/</a></p>
+</section>
+<section class="slide">
+  <h2><a href="https://bitbucket.org/" target="_blank">Bitbucket</a></h2>
+  <ul>
+    <li>早期只支援 Mercurial，近期開始支援 Git</li>
+    <li>類似 GitHub，也有 Fork / Pull Request 的機制</li>
+    <li>公開專案和<strong>五人以下協作的私密專案</strong>免費，另有收費服務</li>
+  </ul>
+  <p><a href="https://bitbucket.org/" target="_blank">https://bitbucket.org/</a></p>
+</section>
+<section class="slide">
+  <h2>自行架設</h2>
+  <p>假如您有一個自己的 Linux 主機，您可以使用 Gitosis 或 Gitolite 架設一個自己的 Remote Server，請參考 Pro Git 上的說明：</p>
+  <ul>
+    <li><a href="http://progit.org/book/ch4-8.html" target="_blank">Gitolite</a>（推薦）</li>
+    <li><a href="http://progit.org/book/ch4-7.html" target="_blank">Gitosis</a></li>
+  </ul>
+  <p>或著，如果您有 NFS 或隨身碟，可以直接透過檔案系統作為 Remote。</p>
+</section>
+<section class="slide">
+  <h2>Remote Protocol</h2>
+  <p>Git 提供以下四種 Remote 的協定：</p>
+  <ul>
+    <li>Local：以本機路徑作為 Remote 目標，適用於架設於 NFS 時。<br><code>/paths/to/remote.git</code> 或 <code>file:///opt/git/project.git</code></li>
+    <li>SSH：連接網路的協定，可讀可寫。可以透過 SSH Key 進行認證。<br><code>username@server.tld:project.git</code><br>通常會使用 SSH，因為其方便且安全性佳。</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>Remote Protocol</h2>
+  <p>Git 提供以下四種 Remote 的協定：</p>
+  <ul>
+    <li>Git：連接網路的協定，唯讀，但速度很快<br><code>git://server.tld/project.git</code></li>
+    <li>HTTP(S)：連接網路的協定，可讀可寫。速度較慢，但適用於公司行號內有防火牆，只有 HTTP(S) Port 對外開放的環境<br><code>http://server.tld/project.git</code></li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>Cloning</h2>
+  <p><code>git clone git@github.com:littlebtc/my-project.git</code></p>
+  <p>這行指令會：</p>
+  <ul>
+    <li>把程式碼從指定的地方抓下來</li>
+    <li>在抓下來的 Repository 中設定好一個叫做 <code>origin</code> 的 Remote 指向該處</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>Remote Branches</h2>
+  <ul>
+    <li>在 Remote 中 Repository 的狀態會被記錄下來</li>
+    <li>因此 Remote 中也會有 Branch，前面會加上 Remote 的名字來作識別</li>
+    <li><code>origin/master</code> 就是指 <code>origin</code> 這個 Remote 中的 <code>master</code> Branch</li>
+  </ul>
+  <img src="git/origin-master-1.png" style="width: 400px;">
+</section>
+<section class="slide">
+  <h2>Remote 的相關指令</h2>
+  <ul>
+    <li><code>git fetch</code>：將 Remote 更新到最新的版本。</li>
+    <li><code>git pull</code>：進行 Fetch 後，將 Remote Branch 的變動合併進本機的 Branch。</li>
+    <li><code>git push</code>：將本機的 Branch 變動合併到 Remote Branch。</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>實例</h2>
+  <p>在未設定 Remote 的 Repository 中，新增 Remote 後 Push：</p>
+  <ul>
+    <li><code>git remote add origin git@github.com:littlebtc/my-project.git</code></li>
+    <li><code>git push -u origin master</code></li>
+  </ul>
+</section>
+
   <script type="text/javascript">
     $(document).ready(function() {
       $.deck('.slide');
