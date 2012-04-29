@@ -206,10 +206,11 @@
   <p>（Mac 下另外建議您使用 <a href="http://www.iterm2.com/" target="_blank">iTerm 2</a> 取代內建的終端機程式）
   <h3>圖形介面工具推薦</h3>
   <ul>
-    <li>Xcode 4 內建 Git 支援！（需要 Lion 以上）</li>
+    <li><a href="http://www.sourcetreeapp.com/" target="_blank">SourceTree</a><br>免費，也支援 Mercurial 和 SVN</li>
     <li><a href="http://www.gitx.org/" target="_blank">GitX</a><br>免費，有只能瀏覽歷史和 Commit 的原始版，和後人改過的全方位版</li>
-    <li><a href="http://mac.github.com/" target="_blank">GitHub for Mac</a><br>免費，也能用於非 GitHub 托管專案喔！<br>但對於 Branch 的管理較為簡化，使用上要注意。</li>
+    <li><a href="http://mac.github.com/" target="_blank">GitHub for Mac</a>（免費）</li>
     <li><a href="http://www.git-tower.com/" target="_blank">Tower</a>（USD $59）</li>
+    <li>Xcode 4 內建 Git 支援（需要 Lion 以上）</li>
   </ul>
 </section>
 <section class="slide">
@@ -476,16 +477,50 @@
   </ul>
 </section>
 <section class="slide">
+  <h2>Conflict!!</h2>
+  <p>當在 3-Way Merge 時發現雙方更動同樣一塊內容時，就會發生衝突。</p>
+  <ul>
+    <li>Git 遇到衝突時會停下來，把未衝突到的地方給 Staging 起來，把衝突到的地方標示起來。</li>
+    <li>這時可以透過 <code>git status</code> 找出衝突的檔案（unmerged）</li>
+    <li>打開那些檔案，手動把衝突之處修正後，重新 Commit 就能解決衝突。</li>
+  </ul>
+</section>
+<section class="slide">
   <h2>Branch 的其他指令</h2>
+  <ul>
+    <li><code>git branch</code>：顯示目前所有的 Branch，會用星號標示目前所在者<br>以 <code>git branch -v</code>同時顯示各 Branch 所在的 Commit</li>
+    <li><code>git branch --merged</code>：顯示已合併到目前 Branch 的其他 Branch<br>這樣可以把沒用到的 Branch 找出來刪掉&#8230;</li>
+    <li><code>git branch --no-merged</code>：顯示未合併到目前 Branch 的其他 Branch</li>
+  </ul>
 </section>
 <section class="slide">
   <h2>Tag</h2>
+  <ul>
+    <li><code>git tag v1.0</code>：把現在的 Commit 加上名為 <code>v1.0</code> 的 Tag</li>
+    <li><code>git tag v1.0 abcde</code>：對代碼為 <code>abcde</code> 的 Commit 加上 <code>v1.0</code> Tag</li> 
+    <li><code>git tag -d v1.0</code>：刪除名為 <code>v1.0</code> 的 Tag</li>
+  </ul>
+  <p>Git 另有功能較為強大的 Annotated Tags，可以在 Tag 上加注作者資訊和認證機制。</p>
+  <p>p.s. Push 時，用 <code>git push --tags</code> 才會把 Tag 給一起 Push 上去</p>
 </section>
 <section class="slide">
   <h2>推薦的分支方式</h2>
+  <img src="git/git-flow.png" style="float: left; margin-right: 50px; width: 360px;">
   <ul>
-    <li>Feature 和 Hotfix Branches</li>
-    <li>git-flow: http://nvie.com/posts/a-successful-git-branching-model/ http://ihower.tw/blog/archives/5140</li>
+    <li>「每個 Branch 都分開處理一項事情」</li>
+    <li>將測試中和穩定的版本分開為不同的 Branch</li>
+    <li>將需要很長時間才能完成的獨立項目拆成 Branch</li>
+    <li><a href="http://nvie.com/posts/a-successful-git-branching-model/" target="_blank">A successful Git branching model</a> 一文中歸納了 Git 用於軟體開發時的分支最佳實踐。有人基於這個概念設計了 <a href="http://ihower.tw/blog/archives/5140" target="_blank">git-flow 工具</a>。</li>
+  </ul>
+</section>
+<section class="slide">
+  <h2>p.s. 「我想要乾淨的樹」</h2>
+  <p>在進行 Branch 切換，或著 Rebase 的時候，會要求您的 Working Directory 必須是乾淨（沒有變動）的，但改到一半的東西又放棄不了？該怎麼辦？</p>
+  <p>→使用 Stashing 把變動放到外太空</p>
+  <ul>
+    <li><code>git stash</code>：把目前的變更（包含 Staging 的部份）放進新的 Stash<br>Stash 可以有很多個，會以堆疊的方式儲存（想成放進桶子裡）</li>
+    <li><code>git stash apply</code>：把最新的 Stash 中的變更取出。</li>
+    <li><code>git stash list</code>：檢視目前的 Stash 堆疊。</li>
   </ul>
 </section>
 
