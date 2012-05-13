@@ -201,12 +201,13 @@
 </style>
 
 
-<!-- dzslides core
+
+<!-- 
 #
 #
-#     __  __  __       .  __   ___  __
-#    |  \  / /__` |    | |  \ |__  /__`
-#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+# __ __ __ . __ ___ __
+# | \ / /__` | | | \ |__ /__`
+# |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
 #
 #
 # The following block of code is not supposed to be edited.
@@ -215,27 +216,79 @@
 #
 -->
 
+<div id="progress-bar"></div>
+
 <!-- Default Style -->
 <style>
-  * { margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
   details { display: none; }
   body {
     width: 800px; height: 600px;
     margin-left: -400px; margin-top: -300px;
     position: absolute; top: 50%; left: 50%;
     overflow: hidden;
+    display: none;
   }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
   section {
     position: absolute;
     pointer-events: none;
     width: 100%; height: 100%;
   }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
   section[aria-selected] { pointer-events: auto; }
   html { overflow: hidden; }
-  body { display: none; }
+  html.view { overflow: visible; }
   body.loaded { display: block; }
   .incremental {visibility: hidden; }
   .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+  }
+  figure > * {
+    position: absolute;
+  }
+  figure > img, figure > video {
+    width: 100%; height: 100%;
+  }
 </style>
 
 <script>
@@ -243,7 +296,9 @@
     remoteWindows: [],
     idx: -1,
     step: 0,
+    html: null,
     slides: null,
+    progressBar : null,
     params: {
       autoplay: "1"
     }
@@ -251,19 +306,25 @@
 
   Dz.init = function() {
     document.body.className = "loaded";
-    this.slides = $$("body > section");
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar");
+    this.html = document.body.parentNode;
     this.setupParams();
     this.onhashchange();
     this.setupTouchEvents();
     this.onresize();
+    this.setupView();
   }
-  
+
   Dz.setupParams = function() {
     var p = window.location.search.substr(1).split('&');
     p.forEach(function(e, i, a) {
       var keyVal = e.split('=');
       Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
     });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
   }
 
   Dz.onkeydown = function(aEvent) {
@@ -300,6 +361,14 @@
       aEvent.preventDefault();
       this.toggleContent();
     }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
   }
 
   /* Touch Events */
@@ -331,6 +400,16 @@
         }
       }
     }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
   }
 
   /* Adapt the size of the slides to the window */
@@ -418,6 +497,7 @@
         newidx++;
       }
     }
+    this.setProgress(newidx, newstep);
     if (newidx != this.idx) {
       this.setSlide(newidx);
     }
@@ -463,6 +543,14 @@
     this.setCursor(lastIdx, lastStep);
   }
 
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
   Dz.setSlide = function(aIdx) {
     this.idx = aIdx;
     var old = $("section[aria-selected]");
@@ -493,9 +581,9 @@
     if (old) {
       old.removeAttribute('aria-selected');
     }
-    var incrementals = this.slides[this.idx - 1].$$('.incremental');
+    var incrementals = $$('.incremental');
     if (this.step <= 0) {
-      incrementals.forEach(function(aNode) {
+      $$.forEach(incrementals, function(aNode) {
         aNode.removeAttribute('active');
       });
       return;
@@ -505,7 +593,7 @@
       next.setAttribute('aria-selected', true);
       next.parentNode.setAttribute('active', true);
       var found = false;
-      incrementals.forEach(function(aNode) {
+      $$.forEach(incrementals, function(aNode) {
         if (aNode != next.parentNode)
           if (found)
             aNode.removeAttribute('active');
@@ -519,6 +607,24 @@
     }
     return next;
   }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+  
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
   
   Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
     aMsg = [aMsg];
@@ -526,12 +632,16 @@
       aMsg.push(encodeURIComponent(arguments[i]));
     aWin.postMessage(aMsg.join(" "), "*");
   }
+  
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
 
-  window.onload = Dz.init.bind(Dz);
-  window.onkeydown = Dz.onkeydown.bind(Dz);
-  window.onresize = Dz.onresize.bind(Dz);
-  window.onhashchange = Dz.onhashchange.bind(Dz);
-  window.onmessage = Dz.onmessage.bind(Dz);
+  window.onload = init;
 </script>
 
 
@@ -540,7 +650,7 @@
     Function.prototype.bind = function (oThis) {
 
       // closest thing possible to the ECMAScript 5 internal IsCallable
-      // function 
+      // function
       if (typeof this !== "function")
       throw new TypeError(
         "Function.prototype.bind - what is trying to be fBound is not callable"
@@ -569,11 +679,8 @@
     return this.querySelectorAll(aQuery);
   }).bind(document);
 
-  NodeList.prototype.forEach = function(fun) {
-    if (typeof fun !== "function") throw new TypeError();
-    for (var i = 0; i < this.length; i++) {
-      fun.call(this, this[i]);
-    }
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
   }
 
 </script>
