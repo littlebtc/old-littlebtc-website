@@ -205,18 +205,6 @@
 </section>
 
 <section>
-  <h2>修改網頁內容</h2>
-</section>
-
-<section>
-  <h3>Content Script</h3>
-  <ul>
-    <li>透過 <code>page-mod</code> API</li>
-    <li>和 Greasemonkey / User Script 的運作原理雷同</li>
-  </ul>
-</section>
-
-<section>
   <h2>新增 UI 元素</h2>
 </section>
 
@@ -240,13 +228,95 @@
 </section>
 
 <section>
+  <blockquote>
+    UI 元素的模組都可以用 <code>onXXX</code> 參數<br>或 <code class="snippet">.on('xxx', function)</code> 聆聽事件。
+  </blockquote>
+</section>
+
+<section>
   <h3>面板</h3>
   <ul>
     <li>浮在瀏覽器視窗上的方塊。</li>
-    <li>會在附加元件列內嵌一個小框架放東西。</li>
+    <li>會在附加元件列內嵌一個小框架放網頁。</li>
+    <li>一樣可以載入網頁或 <code>data/</code> 裡的東西並放置 Content Script。</li>
+    <li><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/packages/addon-kit/panel.html">官方文件</a></li>
   </ul>
-  <script src="https://gist.github.com/efbbaa0dbe20e48138e0.js"></script>
+  <script src="https://gist.github.com/cef8d1873910c586ac9a.js"></script>
 </section>
+
+<section>
+  <h3>Popup Tutorial</h3>
+  <ul>
+    <li><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/display-a-popup.html">Display a Popup</a></li>
+  </ul>
+  <img src="text-entry-panel.png">
+</section>
+
+<section>
+  <h3>Page Worker</h3>
+  <ul>
+    <li>跟 Panel 很像，可是是完全隱藏起來的。</li>
+    <li>可以做一些長時間的背景作業。</li>
+    <li>或著當你需要 DOM 或 HTML5 的時候。</li>
+    <li><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/packages/addon-kit/page-worker.html">官方文件</a></li>
+  </ul>
+  <script src="https://gist.github.com/d1f7023d2efcca3c32b1.js"></script>
+</section>
+
+<section>
+  <h3>右鍵選單</h3>
+  <ul>
+    <li>使用 <code>context</code> 決定在何時出現選單。</li>
+    <li>在 <code>contentScript</code> 裡用聆聽點擊事件，在事件中讀取網頁的 DOM。只能單向提交訊息給 Addon。</li>
+    <li><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/packages/addon-kit/context-menu.html">官方文件</a></li>
+  </ul>
+  <script src="https://gist.github.com/c5910bc8dfa3469430ad.js"></script>
+</section>
+
+<section>
+  <h2>修改網頁內容</h2>
+</section>
+
+<section>
+  <h3>page-mod &asymp; User Script</h3>
+  <ul>
+    <li>透過 <code>page-mod</code> API</li>
+    <li>網頁載入時，透過 <code>worker</code> 注入程式碼並與其溝通</li>
+    <li>可以用 <code>include</code> 參數決定哪些網站要放</li>
+    <li>用 <code>contentScriptFile</code> 放 Script（例如：jQuery）</li>
+  </ul>
+  <script src="https://gist.github.com/3a26d4369a3413804962.js"></script>
+</section>
+
+<section>
+  <figure>
+    <img src="multiple-workers.jpg" style="">
+  </figure>
+</section>
+
+<section>
+  <h3>Content Script 的互通有無</h3>
+  <ul>
+    <li>在 <code>onAttach</code> 參數中指定回呼函數</li>
+    <li>回呼函數會包含 <code>worker</code>，其接口在 <code>worker.port</code></li>
+    <li>跟 Greasemonkey 很像，拿到的 DOM 是過濾乾淨的 DOM，但也有 <code>unsafeWindow</code></li>
+    <li><a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/guides/index.html#content-scripts">官方文件</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Try it!</h2>
+</section>
+
+<section>
+  <h3>更多資源</h3>
+  <ul>
+    <li><a href="http://addons.mozilla.org/en-US/developers/docs/sdk/latest/">Add-on SDK 官方文件</a></li>
+    <li><a href="https://addons.mozilla.org/zh-TW/developers/builder">Builder 和 SDK</a></li>
+  </ul>
+</section>
+
+
 <!--
 -->
 <!-- Your Style -->
@@ -284,11 +354,11 @@
     font-size: 80px;
   }
   h3 {
-    margin: 50px 0 50px 50px;
+    margin: 40px 0 40px 40px;
   }
 
   ul {
-      margin: 50px;
+      margin: 40px 40px;
   }
 
   li {
@@ -381,7 +451,7 @@ progress of the presentation. */
     background: #AAA;
   }
   .gist {
-    font-size: 20px;
+    font-size: 18px;
   }
   .snippet {
     font-size: 75%;
