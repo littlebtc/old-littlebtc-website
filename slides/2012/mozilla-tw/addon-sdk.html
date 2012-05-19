@@ -46,6 +46,12 @@
 </section>
 
 <section>
+    <figure> 
+      <img src="amo.png">
+    </figure>
+</section>
+
+<section>
   <h3>Firefox + Addon = Awesome</h3>
     <ul>
       <li>可以徹底改變瀏覽器的行為</li>
@@ -69,6 +75,7 @@
       <li>擁有強大的介面和內部變動能力</li>
       <li>但需要不短的學習時間</li>
     </ul>
+    <img src="xul-ext.jpg">
 </section>
 
 <section>
@@ -84,8 +91,9 @@
     <h3>開發 Add-on SDK 套件的方式</h3>
     <ul>
       <li>線上使用 Add-on Builder<br>快、方便、立即試用</li>
-      <li>下載 Add-on SDK 本機使用<br>更多功能（單元測試、選項&#8230;）</li>
+      <li>下載 Add-on SDK<br>本機編輯、單元測試、更多控制權</li>
     </ul>
+    <img src="sdk-choose.jpg">
 </section>
 
 <section>
@@ -99,7 +107,6 @@
     <ul>
       <li><a href="https://builder.addons.mozilla.org/" target="_blank">https://builder.addons.mozilla.org/</a></li>
       <li>需要申請一個 BrowserID 或 AMO 帳號</li>
-      <li>先玩玩看吧！</li>
     </ul>
 </section>
 
@@ -117,9 +124,8 @@
 </section>
 
 <section>
-    <h3>高階 API 可以&#8230;</h3>
+    <h3>高階 API</h3>
     <ul>
-      <li>增加瀏覽器上的介面</li>
       <li>和瀏覽器進行互動</li>
       <li>執行一段程式修改載入的網頁</li>
       <li>開一個背景頁面跑東西</li>
@@ -127,23 +133,91 @@
 </section>
 
 <section>
-    <h3>東西要執行在哪裡？</h3>
+    <h3>低階 API</h3>
     <ul>
-      <li>可以執行在 Firefox 的介面或主程式裡<br>稱之為 Add-on / Chrome Scope</li>
-      <li>可以執行在網頁裡面<br>稱之為 Content Scope</li>
-      <li>彼此之間只能透過指定的方式通訊</li>
+      <li>套件所需的基本工具</li>
+      <li>實現高階 API 的功能</li>
+      <li>使用 Firefox 底層的功能</li>
     </ul>
 </section>
-<!--
-<section>
-    <figure> 
-      <img src="http://placekitten.com/g/800/600">
-      <figcaption>An image</figcaption>
-    </figure>
-    <details>Kittens are so cute!</details>
-</section>
-&#8211;>
 
+<section>
+    <h3>模組化</h3>
+    <ul>
+      <li>Add-on SDK 遵循 CommonJS 模組規範</li>
+      <li>內建 API 分為高階的 <code>addon-kit</code> 和低階的 <code>api-utils</code> 兩個 Package</li>
+      <li>套件本身就是一個 Package</li>
+      <li>組態寫在 <code>package.json</code></li>
+    </ul>
+</section>
+
+<section>
+    <h3>模組：使用和讓人使用</h3>
+    <ul>
+      <li>以 <code>require()</code> 來取用模組</li>
+      <li><code>exports</code> 物件中包含所有欲讓其他模組使用的內容</li>
+    </ul>
+    <img src="commonjs-modules.png">
+  </section>
+
+<section>
+    <h3>Add-on SDK 套件的組成</h3>
+    <img src="addon-infra.jpg" style="float: right; width: 220px;">
+    <ul>
+      <li><code>package.json</code></li>
+      <li>模組放在 <code>lib/</code><br>以 <code>main</code> 模組作為程式的進入點</li>
+      <li>模組以外的其他內容放在 <code>data/</code><br>Content Script、HTML、CSS&#8230;</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Script 的執行位置</h3>
+    <ul>
+      <li>可以執行在 Firefox 的介面或主程式裡<br>稱之為 Add-on / Chrome Scope<br>可以取用 Add-on SDK 的 API</li>
+      <li>可以執行在網頁或小元件裡面<br>稱之為 Content Scope<br>可以取用網頁中的 DOM 和 HTML5 API</li>
+      <li>基於安全考量，彼此之間只能透過指定的方式通訊</li>
+    </ul>
+</section>
+
+<section>
+  <blockquote>
+    在 Add-on SDK 裡，很多 UI 元件都是一個可執行網頁的小框架，因此兩種位置的通訊十分常見！
+  </blockquote>
+</section>
+
+<section>
+  <h3>互通有無</h3>
+  <ul>
+    <li>以 <code>port.emit</code> 送出訊息<br><code class="snippet">port.emit("myEvent", myEventPayload);</code></li>
+    <li>以 <code>port.on</code> 接收訊息<br><code class="snippet">port.on("myEvent", function handle(payload) {});</code></li>
+    <li>訊息必須要是可以被轉為 JSON 的內容</li>
+  </ul>
+  <img src="content-scripting-events.png" style="margin-left: 50px; width: 400px;">
+</section>
+
+<section>
+  <h2>新增 UI 元素</h2>
+</section>
+
+
+<section>
+  <h3>附加元件列按鈕</h3>
+  <ul>
+    <li>使用 <code>widget</code> 增加按鈕。</li>
+    <li>會在附加元件列內嵌一個小框架放東西。</li>
+  </ul>
+  <script src="https://gist.github.com/efbbaa0dbe20e48138e0.js"></script>
+</section>
+
+<section>
+  <h3><code>widget</code> 可以做的其他事情</h3>
+  <ul>
+    <li>參考 <a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/adding-toolbar-button.html">官方文件簡介</a>。</li>
+  </ul>
+  <script src="https://gist.github.com/efbbaa0dbe20e48138e0.js"></script>
+</section>
+<!--
+-->
 <!-- Your Style -->
 <!-- Define the style of your presentation -->
 
@@ -179,11 +253,11 @@
     font-size: 80px;
   }
   h3 {
-    margin: 100px 0 50px 100px;
+    margin: 50px 0 50px 50px;
   }
 
   ul {
-      margin: 50px 120px;
+      margin: 50px;
   }
 
   li {
@@ -274,6 +348,12 @@ progress of the presentation. */
   #progress-bar {
     height: 2px;
     background: #AAA;
+  }
+  .gist {
+    font-size: 20px;
+  }
+  .snippet {
+    font-size: 75%;
   }
 </style>
 
