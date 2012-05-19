@@ -166,7 +166,16 @@
     <ul>
       <li><code>package.json</code></li>
       <li>模組放在 <code>lib/</code><br>以 <code>main</code> 模組作為程式的進入點</li>
-      <li>模組以外的其他內容放在 <code>data/</code><br>Content Script、HTML、CSS&#8230;</li>
+      <li>模組以外的其他內容放在 <code>data/</code>（下述）</li>
+    </ul>
+</section>
+
+<section>
+    <h3>data</h3>
+    <ul>
+      <li>用於放置非模組的內容</li>
+      <li>Content Script、HTML、CSS 以及多媒體</li>
+      <li>可用 <code>self</code> API 去取得其網址：<br><span class="snippet">require(&#8220;self&#8221;).data.url(&#8220;abc.htm&#8221;)</span></li>
     </ul>
 </section>
 
@@ -196,9 +205,20 @@
 </section>
 
 <section>
-  <h2>新增 UI 元素</h2>
+  <h2>修改網頁內容</h2>
 </section>
 
+<section>
+  <h3>Content Script</h3>
+  <ul>
+    <li>透過 <code>page-mod</code> API</li>
+    <li>和 Greasemonkey / User Script 的運作原理雷同</li>
+  </ul>
+</section>
+
+<section>
+  <h2>新增 UI 元素</h2>
+</section>
 
 <section>
   <h3>附加元件列按鈕</h3>
@@ -210,9 +230,20 @@
 </section>
 
 <section>
-  <h3><code>widget</code> 可以做的其他事情</h3>
+  <h3><code>widget</code> 的參數</h3>
   <ul>
+    <li><code>panel</code>：搭配 <code>panel</code> API 在點擊後顯示一個面板。</li>
+    <li><code>contentURL</code>：可以是網路上或 <code>data</code> 裡的東西。</li>
+    <li><code>contentScript</code> / <code>contentScriptFile</code>：<br>透過 Content Script 自訂載入、左右點擊等事件時的反應。<br>Widget 端的接口在 <code>widget.port</code><br>Content Script 端的接口在 <code>self.port</code></li>
     <li>參考 <a href="https://addons.mozilla.org/en-US/developers/docs/sdk/latest/dev-guide/tutorials/adding-toolbar-button.html">官方文件簡介</a>。</li>
+  </ul>
+</section>
+
+<section>
+  <h3>面板</h3>
+  <ul>
+    <li>浮在瀏覽器視窗上的方塊。</li>
+    <li>會在附加元件列內嵌一個小框架放東西。</li>
   </ul>
   <script src="https://gist.github.com/efbbaa0dbe20e48138e0.js"></script>
 </section>
