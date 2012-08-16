@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html manifest="./site.appcache">
+<head>
+<meta charset="utf-8">
+<title>Browser Pairs Game - Using CSS3 Animation</title>
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-startup-image" sizes="768x1004" href="images/ipad-splash-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+<link rel="apple-touch-startup-image" sizes="1024x748" href="images/ipad-splash-landscape.png"  media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+<link rel="apple-touch-icon" href="images/logo.jpg" />
+<meta property="og:title" content="Browser Pairs Game" />
+<meta property="og:type" content="game" />
+<meta property="og:description" content="A game pair your lovely browsers and their characters. The CSS3 Transform demo by MozTW Community" />
+<meta property="og:url" content="http://moztw.org/foxmosa/game/pairs/" />
+<meta property="og:image" content="http://moztw.org/foxmosa/game/pairs/images/logo.jpg" />
+<meta property="og:site_name" content="MozTW, Mozilla Taiwan Community" />
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:600|Days+One">
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="ribbon.css">
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '372562499479751', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+
+    // Additional initialization code here
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+    }(document));
+</script>
+
+<!-- CSS GitHub ribbon http://people.mozilla.com/~jbalogh/ribbon/ribbon.html -->
+<div class="right ribbon-holder">
+    <a href="https://github.com/moztw/browserpairs" class="red ribbon">
+        <span class="text">Fork me on GitHub</span>
+    </a>
+</div>
+      
+<article id="game">
+	<header id="gameStats">
+		<a id="qrcode" href="#codebox">QRCODE</a>
+		<p id="reset">Reset &raquo;</p>
+		<p id="gameScore">
+			Click: <span id="click">0</span>
+			Time: <span id="timer">0</span>
+		</p>
+		<a id="credit" href="#creditbox">Credit</a>
+		<p class="baritem" id="mute">Music</p>
+		<p class="baritem" id="fullscreen">FullScreen</p>
+	</header>
+  <section id="playground">
+    <div id="cards">
+      <div class="card">
+        <div class="face front"></div>
+        <div class="face back"></div>
+      </div> <!-- .card -->
+    </div> <!-- #cards -->
+	  <div id="gameIntro">
+		  <div id="gamePlay">0%</div>
+    </div>
+    <div id="gameComplete">
+      <div id="result">
+        <p id="score"></p>
+        <p id="share"><a class="share-button facebook-share-button" href="#" target="_blank" title="Publish message to your Facebook wall">Post on Facebook</a><a class="share-button plurk-share-button" href="#" target="_blank" title="Post to Plurk">Plurk</a>
+  </p>
+      </div>
+      <p><a id="gameAgain" class="button" href="#">Play again</a></p>
+    </div>
+  </section>
+</article> <!-- #game -->
+<div id="splash">
+	<p>
+		<span id="ie"><img src="images/icon_ie.png" alt="Internet Explorer" /></span>
+		<span id="fx"><img src="images/icon_fx.png" alt="Mozilla Firefox" /></span>
+		<span id="cr"><img src="images/icon_cr.png" alt="Google Chrome" /></span>
+		<span id="op"><img src="images/icon_op.png" alt="Opera" /></span>
+	</p>
+	<p>
+		<span id="sf"><img src="images/icon_sf.png" alt="Apple Safari" /></span>
+		<span id="ns"><img src="images/icon_ns.png" alt="Netscape Navigator" /></span>
+		<span id="ms"><img src="images/icon_ms.png" alt="NCSA Mosaic" /></span>
+		<span id="tb"><img src="images/icon_tb.png" alt="Mozilla Thunderbird" /></span>
+		<span id="fm"><img src="images/icon_fm.png" alt="Mascot Foxmosa" /></span>
+	</p>
+</div>
+<section id="creditbox" class="lightbox">
+	<div>
+		<h2>HTML5 Browser Pairs Game</h2>
+		<p><img src="images/logo.jpg" alt="LOGO" /><br /><a href="http://moztw.org">Mozilla Taiwan Community</a><br />×<br /><a href="http://blog.yam.com/ECBp/article/44076465">Explorer Cyber Browserer Comic</a></p>
+		<p>Illustrated by ECBp,<br />licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">CC:BY-NC-SA-3.0-TW</a></p>
+		<p>Music: Mozilla-Blues, composed by <a href="http://magicdesign.blogspot.com/">MGdesigner</a>,<br />licensed under <a href="http://creativecommons.org/licenses/by/3.0/tw/deed.en">CC:BY-3.0-TW</a></p>
+		<p>Programed by <a href="http://kidwm.net/">WM</a>, Derived from <a href="http://www.my-html-codes.com/game-using-css3-animation">Dino Pair Game</a><br />by <a href="http://www.my-html-codes.com/">Matt Walker</a>, Thank him for the original game.</p>
+		<p><a href="#">&raquo; close &laquo;</a></p>
+	</div>
+</section>
+<section id="codebox" class="lightbox">
+	<div>
+		<h2>QR Code</h2>
+		<p><img src="http://chart.googleapis.com/chart?chs=400x400&cht=qr&chl=http%3A%2F%2Fmoztw.org%2Ffoxmosa%2Fgame%2Fpairs" alt="QR Code" /></p>
+		<p><a href="#">&raquo; close &laquo;</a></p>
+	</div>
+</section>
+<audio id="melody">
+   <source src="sound/song.ogg" type="audio/ogg; codecs=vorbis" />
+   <source src="sound/song.mp3" type="audio/mpeg" />
+</audio>
+<audio class="sound">
+   <source src="sound/intro.ogg" type="audio/ogg; codecs=vorbis" />
+   <source src="sound/intro.mp3" type="audio/mpeg" />
+</audio>
+<audio class="sound">
+   <source src="sound/select.ogg" type="audio/ogg; codecs=vorbis" />
+   <source src="sound/select.mp3" type="audio/mpeg" />
+</audio>
+<audio class="sound">
+   <source src="sound/match.ogg" type="audio/ogg; codecs=vorbis" />
+   <source src="sound/match.mp3" type="audio/mpeg" />
+</audio>
+<audio class="sound">
+   <source src="sound/applause.ogg" type="audio/ogg; codecs=vorbis" />
+   <source src="sound/applause.mp3" type="audio/mpeg" />
+</audio>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="pxloader.js"></script>
+<script src="script.js"></script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1035080-1']);
+  _gaq.push(['_setDomainName', 'moztw.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>
