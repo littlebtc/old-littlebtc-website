@@ -224,10 +224,15 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+@media (min-width: 800px) {
+  #gameIntro {
 	-moz-transition: opacity 1s ease-out;
 	-webkit-transition: opacity 1s ease-out;
 	-o-transition: opacity 1s ease-out;
 	transition: opacity 1s ease-out;
+  }
 }
 
 #game.open #gameIntro {
@@ -276,23 +281,30 @@ body {
 	height: 400px;
   visibility: hidden;
   z-index: 1;
-	-moz-transition: all 1s ease-out;
-	-webkit-transition: all 1s ease-out;
-	-o-transition: all 1s ease-out;
-	transition: all 1s ease-out;
 	opacity: 0;
 }
 
 #game.end #gameComplete {
-	-moz-transition: all .5s ease 2s;
-	-webkit-transition: all .5s ease 2s;
-	-o-transition: all .5s ease 2s;
-	transition: all .5s ease 2s;
 	opacity: 1;
   z-index: 3;
   visibility: visible;
 	top: 0;
 	bottom: 0;
+}
+
+@media (min-width: 800px) {
+  #gameComplete {
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	-o-transition: all 1s ease-out;
+	transition: all 1s ease-out;
+  }
+  #game.end #gameComplete {
+    -moz-transition: all .5s ease 2s;
+    -webkit-transition: all .5s ease 2s;
+    -o-transition: all .5s ease 2s;
+    transition: all .5s ease 2s;
+  }
 }
 
 #gameComplete a.share-button {
@@ -414,10 +426,6 @@ body {
 
 #splash {
   z-index: 90;
-	-moz-transition: all .8s ease-in 1.2s;
-	-webkit-transition: all .8s ease-in 1.2s;
-	-o-transition: all .8s ease-in 1.2s;
-	transition: all .8s ease-in 1.2s;
 	top: -300%;
 	bottom: 300%;
 	position: fixed;
@@ -437,6 +445,15 @@ body {
 	transform: scale(3);
 }
 
+@screen (min-width: 800px) {
+  #splash {
+    -moz-transition: all .8s ease-in 1.2s;
+    -webkit-transition: all .8s ease-in 1.2s;
+    -o-transition: all .8s ease-in 1.2s;
+    transition: all .8s ease-in 1.2s;
+  }
+}
+
 #splash.disable {
 	display: none;
 }
@@ -445,14 +462,19 @@ body {
 	top: 0;
 	bottom: 0;
 	opacity: 1;
-	-moz-transition: all .8s ease .2s;
-	-webkit-transition: all .8s ease .2s;
-	-o-transition: all .8s ease .2s;
-	transition: all .8s ease .2s;
 	-moz-transform: scale(1);
 	-webkit-transform: scale(1);
 	-o-transform: scale(1);
 	transform: scale(1);
+}
+
+@screen (min-width: 800px) {
+  #splash.match {
+    -moz-transition: all .8s ease .2s;
+    -webkit-transition: all .8s ease .2s;
+    -o-transition: all .8s ease .2s;
+    transition: all .8s ease .2s;
+  }
 }
 
 #splash:target  {
@@ -492,10 +514,6 @@ body {
 
 #splash span.current {
 	z-index: 95;
-	-moz-transition: all .8s ease 0;
-	-webkit-transition: all .8s ease 0;
-	-o-transition: all .8s ease 0;
-	transition: all .8s ease 0;
 	box-shadow: 0 0 20px #000;
 	-moz-transform: rotate(5deg) scale(2);
 	-webkit-transform: rotate(5deg) scale(2);
@@ -503,15 +521,29 @@ body {
 	transform: rotate(5deg) scale(2);
 }
 
+@screen (min-width: 800px) {
+  #splash span.current {
+    -moz-transition: all .8s ease 0;
+    -webkit-transition: all .8s ease 0;
+    -o-transition: all .8s ease 0;
+    transition: all .8s ease 0;
+  }
+}
+
 #splash.match span.current {
-	-moz-transition: all .8s linear .8s;
-	-webkit-transition: all .8s linear .8s;
-	-o-transition: all .8s linear .8s;
-	transition: all .8s linear .8s;
 	-moz-transform: rotate(-5deg) scale(4);
 	-webkit-transform: rotate(-5deg) scale(4);
 	-o-transform: rotate(-5deg) scale(4);
 	transform: rotate(-5deg) scale(4);
+}
+
+@screen (min-width: 800px) {
+  #splash.match span.current {
+    -moz-transition: all .8s linear .8s;
+    -webkit-transition: all .8s linear .8s;
+    -o-transition: all .8s linear .8s;
+    transition: all .8s linear .8s;
+  }
 }
 
 #splash span.matched:after {
@@ -529,10 +561,6 @@ body {
 }
 
 .lightbox:after {
-	-moz-transition: opacity .8s ease;
-	-webkit-transition: opacity .8s ease;
-	-o-transition: opacity .8s ease;
-	transition: opacity .8s ease;
 	content: "";
 	position: fixed;
 	top: 0;
@@ -542,11 +570,16 @@ body {
 	opacity: 0;
 }
 
+@screen (min-width: 800px) {
+  .lightbox:after {
+    -moz-transition: opacity .8s ease;
+    -webkit-transition: opacity .8s ease;
+    -o-transition: opacity .8s ease;
+    transition: opacity .8s ease;
+  }
+}
+
 .lightbox > div {
-	-moz-transition: opacity .8s ease;
-	-webkit-transition: opacity .8s ease;
-	-o-transition: opacity .8s ease;
-	transition: opacity .8s ease;
 	position: absolute;
 	width: 760px;
 	height: 520px;
@@ -562,6 +595,15 @@ body {
 	overflow-y: auto;
 }
 
+@screen (min-width: 800px) {
+  .lightbox > div {
+    -moz-transition: opacity .8s ease;
+    -webkit-transition: opacity .8s ease;
+    -o-transition: opacity .8s ease;
+    transition: opacity .8s ease;
+  }
+}
+  
 .lightbox:target {
 	left: 0;
 }
