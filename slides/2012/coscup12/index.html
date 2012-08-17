@@ -7,7 +7,7 @@
     <meta name="author" content="Hsiao-Ting Yu (Littlebtc)">
 
     
-    <meta name="description" content="TouchLimit:Rails + NoSQL on VPS 的教訓 Littlebtc (Hsiao-Ting Yu) 笨笨的小B COSCUP 第四年 退伍囉！ 換點花樣 當兵時寫的東西 Run on Linode 768 提供 WM（VPS 金主） 美國奮鬥中 裡頭的東西 Rails &hellip;">
+    <meta name="description" content="TouchLimit:Rails + NoSQL on VPS 的教訓 Littlebtc (Hsiao-Ting Yu) 笨笨的小B COSCUP 第四年 退伍囉！ 換點花樣 當兵時寫的東西 愛玩遊戲的產物 Run on Linode 768 提供 WM（VPS 金主） 美國奮鬥中 裡頭的東西 &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -84,6 +84,10 @@
 </section>
 
 <section>
+  <h2>愛玩遊戲的產物</h2>
+</section>
+
+<section>
     <figure> 
       <img src="jubeat.jpg">
     </figure>
@@ -111,9 +115,10 @@
   <h3>裡頭的東西</h3>
     <ul>
       <li>Rails Web 實體 * 2</li>
-      <li>Resque Worker * 2</li>
+      <li>幕後 Worker * 2</li>
       <li>MongoDB</li>
       <li>Redis</li>
+      <li>God Monitor</li>
     </ul>
 </section>
 
@@ -131,6 +136,139 @@
   </blockquote>
 </section>
 
+<section>
+  <h2>Orz</h2>
+</section>
+
+<section>
+  <h2>看了一下</h2>
+</section>
+
+<section>
+  <blockquote>
+    Your Linode, linode123456, has exceeded the notification threshold (1000) for disk io rate by averaging 4319.93 for the last 2 hours. The dashboard for this Linode is located at http://~
+  </blockquote>
+</section>
+
+<section>
+    <figure> 
+      <img src="touchwarning.png">
+    </figure>
+</section>
+
+<section>
+    <figure> 
+      <img src="wtf.jpg">
+    </figure>
+</section>
+
+<section>
+  <h2>直到有一天<br>連進去發現好慢</h2>
+</section>
+
+<section>
+  <h2 style="font-size: 300%;">MEM: 5MB FREE</h2>
+</section>
+
+<section>
+    <figure> 
+      <img src="wolf.jpg">
+    </figure>
+</section>
+
+<section>
+  <h2>找問題 + 修問題</h2>
+</section>
+
+<section>
+  <h3>少開幾個 Web Instance</h3>
+  <ul>
+    <li>流量不大，OK 的啦</li>
+    <li>難易度：★</li>
+  </ul>
+</section>
+
+<section>
+  <h3>少載入一些 Rails 的東西</h3>
+  <ul>
+    <li>偷偷拔掉幾個 require =3=</li>
+    <li>難易度：★★</li>
+  </ul>
+</section>
+
+<section>
+  <h3>Worker 不載入 Rails</h3>
+  <ul>
+    <li>不會用到，又會浪費記憶體</li>
+    <li>難易度：★★★</li>
+  </ul>
+</section>
+
+<section>
+  <h3>God → Monit</h3>
+  <ul>
+    <li>資源節省很多，但 Script 變超難寫</li>
+    <li>難易度：★★★★</li>
+  </ul>
+</section>
+
+<section>
+  <h3>改寫很慢的 MongoDB Query</h3>
+  <ul>
+    <li><strong>昨天</strong>才抓到一個 Orz</li>
+    <li>小地方都會出錯</li>
+    <li>難易度：★★★★★ + &#8230;</li>
+  </ul>
+</section>
+
+<section>
+    <figure> 
+      <img src="toodamnhigh.jpg">
+    </figure>
+</section>
+
+<section>
+  <h3>一行解決瓶頸點</h3>
+  <ul class="incremental">
+    <li><img src="1linefixes.png"></li>
+    <li>就好了 Orz</li>
+    <li><img src="whysoloud.jpg"></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Conclusion</h2>
+</section>
+
+<section>
+  <h2><del>當兵寫 Code 有益身心</del></h2>
+</section>
+
+<section>
+  <h2>Rails 很吃資源</h2>
+</section>
+
+<section>
+  <h2>NoSQL 絕非萬靈丹</h2>
+</section>
+
+<section>
+  <h2>未熟調教是一切邪惡的根源</h2>
+</section>
+
+<section>
+  <h2><del>資源有限，只好動不動調教一下</del></h2>
+</section>
+
+<section>
+    <figure> 
+      <img src="virus.jpg">
+    </figure>
+</section>
+
+<section>
+  <h2>Thanks!</h2>
+</section>
 <!--
 -->
 <!-- Your Style -->
