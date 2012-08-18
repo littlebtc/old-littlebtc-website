@@ -7,7 +7,7 @@
     <meta name="author" content="Hsiao-Ting Yu (Littlebtc)">
 
     
-    <meta name="description" content="TouchLimit:Rails + NoSQL on VPS 的教訓 Littlebtc (Hsiao-Ting Yu) 笨笨的小B COSCUP 第四年 退伍囉！ 換點花樣 當兵時寫的東西 愛玩遊戲的產物 Run on Linode 768 提供 WM（VPS 金主） 美國奮鬥中 裡頭的東西 &hellip;">
+    <meta name="description" content="Rails + NoSQL 在 VPS 上的杯具以 TouchLimit 為例 Littlebtc (Hsiao-Ting Yu) 笨笨的小B COSCUP 第四年 退伍囉！ 換點花樣 當兵時寫的東西 愛玩遊戲的產物 Linode 768 開 IRC 超爽的 提供 魏藥（CSS3 強者） &hellip;">
     
     <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
 
@@ -41,7 +41,7 @@
 
 <body>
 <section>
-  <h1>TouchLimit:<br><small>Rails + NoSQL on VPS 的教訓</small></h1>
+  <h1>Rails + NoSQL 在 VPS 上的杯具<br><small>以 TouchLimit 為例</small></h1>
   <footer>Littlebtc (Hsiao-Ting Yu)</footer>
 </section>
 
@@ -100,12 +100,18 @@
 </section>
 
 <section>
-  <h2>Run on Linode 768</h2>
+  <h2>Linode 768</h2>
+</section>
+
+<section>
+  <h2><del>開 IRC 超爽的</del></h2>
 </section>
 
 <section>
   <h3>提供</h3>
-  <ul>
+  <ul class="incremental">
+    <li>魏藥（CSS3 強者）</li>
+    <li>KIKA（低調小繪師）</li>
     <li>WM（VPS 金主）<br>
     <img src="kidwm.jpg" style="margin: 0 auto"><br>美國奮鬥中
   </li>
@@ -177,38 +183,12 @@
 </section>
 
 <section>
-  <h2>找問題 + 修問題</h2>
-</section>
-
-<section>
-  <h3>少開幾個 Web Instance</h3>
-  <ul>
-    <li>流量不大，OK 的啦</li>
-    <li>難易度：★</li>
-  </ul>
-</section>
-
-<section>
-  <h3>少載入一些 Rails 的東西</h3>
-  <ul>
-    <li>偷偷拔掉幾個 require =3=</li>
-    <li>難易度：★★</li>
-  </ul>
-</section>
-
-<section>
-  <h3>Worker 不載入 Rails</h3>
-  <ul>
-    <li>不會用到，又會浪費記憶體</li>
-    <li>難易度：★★★</li>
-  </ul>
-</section>
-
-<section>
-  <h3>God → Monit</h3>
-  <ul>
-    <li>資源節省很多，但 Script 變超難寫</li>
-    <li>難易度：★★★★</li>
+  <h3>拚命找拚命修</h3>
+  <ul class="incremental">
+    <li>少開幾個 Web Instance</li>
+    <li>不載入部分 Rails 組件</li>
+    <li>Worker 不載入 Rails</li>
+    <li>God → Monit</li>
   </ul>
 </section>
 
@@ -229,11 +209,20 @@
 
 <section>
   <h3>一行解決瓶頸點</h3>
-  <ul class="incremental">
+  <ul>
     <li><img src="1linefixes.png"></li>
-    <li>就好了 Orz</li>
-    <li><img src="whysoloud.jpg"></li>
+    <li>Slow queries 變少了&#8230;</li>
   </ul>
+</section>
+
+<section>
+  <h2>改 完 又 爆 炸 了</h2>
+</section>
+
+<section>
+    <figure> 
+      <img src="whysoloud.jpg">
+    </figure>
 </section>
 
 <section>
@@ -267,7 +256,13 @@
 </section>
 
 <section>
-  <h2>Thanks!</h2>
+  <h2>Thanks!<br><small>Team TouchLimit</small></h2>
+</section>
+
+<section>
+    <figure> 
+      <img src="touchlimit.png">
+    </figure>
 </section>
 <!--
 -->
