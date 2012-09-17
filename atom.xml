@@ -4,7 +4,7 @@
   <title><![CDATA[小鎮遊跡]]></title>
   <link href="http://littleb.tc/atom.xml" rel="self"/>
   <link href="http://littleb.tc/"/>
-  <updated>2012-08-18T17:37:28+08:00</updated>
+  <updated>2012-09-17T23:56:02+08:00</updated>
   <id>http://littleb.tc/</id>
   <author>
     <name><![CDATA[Hsiao-Ting Yu (Littlebtc)]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[夏天結束與 NicoFox 四週年之時]]></title>
+    <link href="http://littleb.tc/blog/2012/09/17/end-of-summer/"/>
+    <updated>2012-09-17T23:16:00+08:00</updated>
+    <id>http://littleb.tc/blog/2012/09/17/end-of-summer</id>
+    <content type="html"><![CDATA[<p><a href="http://i.imgur.com/SETHM.jpg">Imgur</a></p>
+
+<p>不知不覺間已經退伍兩個半月了，而夏天也隨著東北季風的到來結束了。</p>
+
+<p>因此，又到了要稍微反省一下自己做了什麼的時間。</p>
+
+<p>這個夏天大半寫程式的時間都放在工作上吧。有了新的 Startup 工作，作出了一些非常棒的成品，希望可以趕快跟大家見面。在個人專案方面，NicoFox 推出了內部改寫和針對 Zero 修正的 1.0 Beta 系列，TouchLimit 在八月期間進行了最後的 MongoDB 微調（還因此講了 COSCUP！）</p>
+
+<p>個人生活方面，利用難得留在台中的機會耍了很多 Troll，雖然感覺最後什麼都沒得到，但也是一段有趣的經驗呢。七月瘋狂南部行、考到了駕照、歡送要去美國奮鬥的 WM、跟大飛籌辦了 NicoFox 傳說中的 FF20 胸章計畫，而八月自己跑去聽 Cytus Live、COSCUP 2012 還有 Prismatic Music 的硬核 Party，都是很棒的活動！ :)</p>
+
+<p>也偷偷買了新的隨身 DC 和新的機械式鍵盤，在增加生產力與創造力方面也應該能有很大貢獻（喂）</p>
+
+<p>展望秋天，NicoFox 1.0、TouchLimit 5.0 都正在默默拖搞之中，還有很多東西會跟大家見面！</p>
+
+<p>自己真的還不夠，各方面都是。要讓自己更強，才能在這個世界作些什麼。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hello Octopress!]]></title>
